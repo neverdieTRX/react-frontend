@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TextInput extends Component {
+export default class TextInput extends Component {
     constructor(props) {
       super(props);
       this.state = {value: ''};
@@ -14,13 +14,14 @@ class TextInput extends Component {
     }
   
     handleSubmit(event) {
-      alert('A name was submitted: ' + this.state.value);
+      this.props.callBack(this.state.value);
+
       event.preventDefault();
     }
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(e)=>this.handleSubmit(e)}>
           <label>
             Name:
             <input type="text" value={this.state.value} onChange={this.handleChange} />
